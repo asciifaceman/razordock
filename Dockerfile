@@ -17,6 +17,9 @@ RUN apt-get upgrade -y
 # Enable rewrite
 RUN a2enmod rewrite
 
+# Set timezone
+RUN echo US/Pacific > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
+
 
 # Copy RazorCMS into the container
 ADD files/razorCMS-3.4.6 /razorcms
