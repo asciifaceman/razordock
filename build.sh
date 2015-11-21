@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ -z "$VERSION" ]; do
+  echo "usage:"
+  echo " ./build VERSION"
+  return
+fi
+
 IMAGE="asciifaceman/razorcms"
 VERSION=$1
 
