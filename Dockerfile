@@ -1,16 +1,18 @@
 # RazorDock for RazorCMS
 #
-# VERSION   0.2
+# VERSION   0.3
+
+ENV RAZORVER 3.4.6
 
 # use debian jessie - just because
 FROM debian:jessie
 
-MAINTAINER Charles Corbett <nafredy@gmail.com> version: 0.2
+MAINTAINER Charles Corbett <nafredy@gmail.com> version: 0.3
 
 # Update
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
-  apt-get -y install git apache2 libapache2-mod-php5 php5-json php5-sqlite php5-curl php5-gd php-pear php-apc curl php5-xmlrpc unzip
+  apt-get -y install git apache2 libapache2-mod-php5 php5-json php5-sqlite php5-curl php5-gd php-pear php-apc curl php5-xmlrpc unzip git
 
 RUN apt-get upgrade -y
 
@@ -22,7 +24,8 @@ RUN echo US/Pacific > /etc/timezone && dpkg-reconfigure --frontend noninteractiv
 
 
 # Copy RazorCMS into the container
-ADD files/razorCMS-3.4.6 /razorcms
+#ADD files/razorCMS-3.4.6 /razorcms
+RUN git clone -b $RAZORVER --single-branch git@github.com:smiffy6969/razorCMS.git /razorcms
 
 # Add apache config
 ADD ./001-razorCMS.conf /etc/apache2/sites-available/
