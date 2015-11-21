@@ -1,11 +1,11 @@
 # RazorDock for RazorCMS
 #
-# VERSION   0.1
+# VERSION   0.2
 
 # use debian jessie - just because
 FROM debian:jessie
 
-MAINTAINER Charles Corbett <nafredy@gmail.com> version: 0.1
+MAINTAINER Charles Corbett <nafredy@gmail.com> version: 0.2
 
 # Update
 RUN apt-get update && \
@@ -24,6 +24,7 @@ ADD files/razorCMS-3.4.6 /razorcms
 # Add apache config
 ADD ./001-razorCMS.conf /etc/apache2/sites-available/
 RUN ln -s /etc/apache2/sites-available/001-razorCMS.conf /etc/apache2/sites-enabled/
+RUN rm /etc/apache2/sites-enabled/000-default.conf
 
 # ENV variables
 ENV APACHE_RUN_USER www-data
