@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -z "$VERSION" ]; do
+if [ -z "$VERSION" ]; then
   echo "usage:"
   echo " ./build VERSION"
   return
