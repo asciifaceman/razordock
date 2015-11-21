@@ -35,8 +35,10 @@ AddType image/svg+xml svg
 DirectoryIndex index.html index.htm index.php index default.html default.htm default.php default
 
 RewriteEngine On
-RewriteRule ^sitemap_index.xml rars/seo/sitemap [L,QSA]
-RewriteRule ^sitemap([0-9]*).xml rars/seo/sitemap/$1 [L,QSA]
+RewriteCond $0####%{REQUEST_URI} ^(.*)####(.*)\1$
+RewriteRule ^.*$ - [E=BASE_PATH:%2]
+RewriteRule ^sitemap_index.xml %{ENV:BASE_PATH}rars/seo/sitemap [L,QSA]
+RewriteRule ^sitemap([0-9]*).xml %{ENV:BASE_PATH}rars/seo/sitemap/$1 [L,QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?path=$1 [L,QSA]
+RewriteRule ^(.*)$ %{ENV:BASE_PATH}index.php?path=$1 [L,QSA]

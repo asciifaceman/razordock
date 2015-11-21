@@ -22,8 +22,10 @@ ForceType application/x-httpd-php
 DirectoryIndex index.php
 
 RewriteEngine On
-RewriteRule ^login/u/(.*)/p/(.*)$ index.php?login=1&u=$1&p=$2 [L,QSA]
-RewriteRule ^login index.php?login=1 [L,QSA]
+RewriteCond $0####%{REQUEST_URI} ^(.*)####(.*)\1$
+RewriteRule ^.*$ - [E=BASE_PATH:%2]
+RewriteRule ^login/u/(.*)/p/(.*)$ %{ENV:BASE_PATH}index.php?login=1&u=$1&p=$2 [L,QSA]
+RewriteRule ^login %{ENV:BASE_PATH}index.php?login=1 [L,QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?path=$1 [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L,QSA]
+RewriteRule ^(.*)$ %{ENV:BASE_PATH}index.php?path=$1 [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L,QSA]
