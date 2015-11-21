@@ -13,7 +13,7 @@ RUN apt-get upgrade -y
 RUN apt-get install unzip -y
 
 # Build LAP stack
-RUN apt-get install apache2
+RUN apt-get install apache2 -y
 # php5-common libapache2-mod-php5 php5-cli 
 
 # Copy RazorCMS into the container
