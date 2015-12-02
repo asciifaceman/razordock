@@ -49,5 +49,5 @@ EXPOSE 80
 
 ADD start.sh /start.sh
 RUN chmod 0755 /start.sh
-RUN chown www-data:www-data /razorcms
+RUN chown -R www-data:www-data /razorcms
 CMD ["/bin/bash", "start.sh"]
