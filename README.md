@@ -1,3 +1,5 @@
+RazorCMS has disappeared from the internet since making this, it's time to let it rest. Archived 4/13/23
+
 # razordock v0.3
 Dockerized implementation of RazorCMS http://www.razorcms.co.uk/
 
